@@ -23,7 +23,9 @@
     <script type="importmap">
       {
         "imports": {
-          "lit-element": "https://unpkg.com/lit-element@latest/lit-element.js?module"
+          "lit-element": "https://unpkg.com/lit-element@latest/lit-element.js?module",
+          "lit-html/directives/if-defined": "https://unpkg.com/lit-html@latest/directives/if-defined.js?module",
+          "lit-html/directives/live": "https://unpkg.com/lit-html@latest/directives/live.js?module"
         }
       }
     </script>
@@ -36,7 +38,7 @@
       </ui-header>
       <ui-page role="main">
         <ui-field label="Requester name">
-          <input name="requester" size="50" required />
+          <ui-input name="requester" size="50" required />
         </ui-field>
 
         <ui-field label="Category">

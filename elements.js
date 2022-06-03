@@ -1,4 +1,6 @@
 import { LitElement, html, css } from 'lit-element';
+import { ifDefined } from 'lit-html/directives/if-defined';
+import { live } from 'lit-html/directives/live';
 
 class HeaderElement extends LitElement {
   static styles = css`
@@ -148,8 +150,76 @@ class ButtonElement extends LitElement {
   }
 }
 
+/**
+ * Base form associated element that just sets form value and validity from wrapped native element
+ */
+class FormElement extends LitElement {
+
+  static formAssociated = true;
+
+  constructor() {
+    super();
+    this._internals = this.attachInternals();
+  }
+
+  get _formElement() {
+    return this.shadowRoot.children[0];
+  }
+
+  _updateInternals() {
+    const target = this._formElement;
+    this._internals.setFormValue(target.value);
+    this._internals.setValidity(target.validity, target.validationMessage, target);
+  }
+
+  firstUpdated(...args) {
+    super.firstUpdated(...args);
+    this._updateInternals();
+  }
+}
+
+class InputElement extends FormElement {
+
+  static properties = {
+    type: { type: String },
+    type: { type: String },
+    value: { type: String },
+    placeholder: { type: String },
+    required: { type: Boolean },
+    size: { type: Number },
+  };
+
+  constructor() {
+    super();
+    this.value = '';
+    this.type = 'text';
+    this.placeholder = '';
+  }
+
+  _onInput({ target }) {
+    this.value = target.value;
+    this._updateInternals();
+  }
+  
+  render() {
+    return html`
+      <input
+        type="${this.type}"
+        .value="${live(this.value)}"
+        ?disabled="${this.disabled}"
+        placeholder="${this.placeholder}"
+        ?required="${this.required}"
+        ?readonly="${this.readOnly}"
+        size="${ifDefined(this.size === null ? undefined : this.size)}"
+        name="${ifDefined(this.name === '' ? undefined : this.name)}"
+        @input="${this._onInput}">
+    `;
+  }
+}
+
 customElements.define('ui-button', ButtonElement);
 customElements.define('ui-header', HeaderElement);
 customElements.define('ui-page', PageElement);
 customElements.define('ui-footer', FooterElement);
 customElements.define('ui-field', FieldElement);
+customElements.define('ui-input', InputElement);
