@@ -106,19 +106,27 @@ class FieldElement extends LitElement {
 
   get _labelHtml() {
     if (!this._field) return '';
-    const { id, required } = this._field;
-    const suffix = required ? html`<span class="required">*</span>` : '';
-    return html` <label for="${id}">${this.label}${suffix}</label>`;
+    const suffix = this._field.required ? html`<span class="required">*</span>` : '';
+    return html`<label>${this.label}${suffix}</label>`;
   }
 
   _onFieldChange() {
     const slot = this.shadowRoot.querySelector('slot');
     this._field = slot.assignedElements()[0];
-    // just be sure to set an id
-    if (!this._field.id) {
-      this._field.id = this._field.name || 'field';
+    if (this.label) {
+      this._updateLabel();
     }
     this.requestUpdate();
+  }
+
+  _updateLabel() {
+    this._field?.setAttribute('aria-label', this.label);
+  }
+
+  willUpdate(changedProperties) {
+    if (this._field && changedProperties.has('label')) {
+      this._updateLabel();
+    }
   }
 }
 
