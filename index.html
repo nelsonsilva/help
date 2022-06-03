@@ -1,0 +1,201 @@
+<html>
+  <head>
+    <title>NS - Assistance Request</title>
+    <style>
+      body {
+        background: #46596b;
+        font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;
+        font-size: 0.99em;
+      }
+      #header {
+        background: #46596b;
+        color: #ffffff;
+        padding-bottom: 5px;
+        margin-top: 18px;
+        padding-right: 2px;
+        padding-left: 2px;
+        margin-right: 6px;
+        margin-left: 6px;
+        border-color: transparent;
+      }
+      #footer {
+        background: #46596b;
+        color: #ffffff;
+        clear: both;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        padding-right: 2px;
+        padding-left: 2px;
+        margin-right: 6px;
+        margin-left: 6px;
+        border-color: transparent;
+      }
+      h1 {
+        font-size: 1.6em;
+      }
+      div.page {
+        font-size: 0.8em;
+        min-height: 200px;
+        clear: both;
+        padding-bottom: 6px;
+        padding-top: 6px;
+        padding-right: 2px;
+        padding-left: 2px;
+        margin-right: 6px;
+        margin-left: 6px;
+      }
+
+      .ui-widget-content {
+        border: 1px solid #d6e9ff;
+        background: #fcfdfd none 50% bottom repeat-x;
+        color: #1f5f8e;
+      }
+
+      .ui-button {
+        background: #d6e9ff;
+        color: #1f5f8e;
+        border: 1px solid #1f5f8e;
+        font-size: 1em;
+      }
+      input[type="submit"],
+      input[type="button"],
+      button {
+        cursor: pointer;
+        padding: 4px;
+        margin: 3px;
+      }
+      span.paragraph {
+        display: block;
+        padding: 1px 4px 1px 4px;
+        margin: 0 2px 0 2px;
+        font-size: 1em;
+      }
+      .field_input {
+        background: #fcfdfd;
+        color: #1f5f8e;
+        border: 1px solid #1f5f8e;
+        font-family: Lucida Sans Unicode, Lucida Grande, sans-serif;
+        font-size: 1em;
+      }
+      .field {
+        padding: 4px;
+        margin: 2px 2px 4px 2px;
+      }
+      .field_label {
+        display: block;
+        white-space: normal;
+      }
+      .bold_label {
+        font-weight: bold;
+      }
+      .check_label {
+        display: inline-block;
+      }
+      .field textarea {
+        width: 90%;
+      }
+      .required {
+        color: #ff0000;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      input {
+        padding: 1px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="https://formspree.io/f/xjvllqnv" method="POST">
+      <div id="header">
+        <h1>
+          <span class="bold_label">NS - Assistance Request</span>
+        </h1>
+      </div>
+      <div class="page ui-widget-content first_page page_visible">
+        <div class="field combobox">
+          <label for="requester" class="field_label bold_label"
+            >Requester Name<span class="required">*</span></label
+          >
+          <input
+            id="requester"
+            name="requester"
+            aria-required="true"
+            size="50"
+            class="field_input ui-widget-content select_input ui-autocomplete-input"
+            type="text"
+          />
+        </div>
+        <div class="ui-helper-clearfix panel">
+          <div class="layout_column" style="width: 98%">
+            <div>
+              <div class="field combobox">
+                <label for="category" class="field_label bold_label"
+                  >Category<span class="required">*</span></label
+                >
+                <select
+                  id="category"
+                  name="category"
+                  class="field_input ui-widget-content select_input"
+                >
+                  <option value="none" selected disabled hidden></option>
+                  <option value="question">Question</option>
+                  <option value="help">Help</option>
+                  <option value="opinion">Opinion</option>
+                  <option value="ramble">Rambling</option>
+                  <option value="beverages">Beverages</option>
+                  <option value="wtf">WTF</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field checkbox">
+          <input
+            class="field_input"
+            type="checkbox"
+            id="emergency"
+            name="emergency"
+            aria-required="false"
+            value="1"
+            aria-readonly="false"
+            aria-invalid="false"
+          />
+          <label for="emergency" class="check_label field_label bold_label"
+            >Emergency</label
+          >
+        </div>
+        <div>
+          <span class="paragraph"
+            >Please check Emergency only if your question or issue is affecting
+            a deadline</span
+          >
+        </div>
+        <div class="field multiline">
+          <label for="description" class="field_label bold_label"
+            >Description<span class="required">*</span></label
+          >
+          <textarea
+            rows="5"
+            class="field_input ui-widget-content"
+            id="description"
+            name="description"
+            aria-required="true"
+            aria-invalid="false"
+          ></textarea>
+        </div>
+      </div>
+      <div id="footer" class="footer ui-widget-content">
+        <div class="submit formbutton">
+          <input
+            type="submit"
+            value="Submit"
+            class="bold_label button ui-state-default ui-button-label-wrap ui-button"
+          />
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
