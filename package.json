@@ -1,0 +1,11 @@
+{
+  "name": "@nelsonsilva/help",
+  "version": "1.0.0",
+  "author": "Nelson Silva",
+  "scripts": {
+    "start": "npx vercel dev"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^7.7.0"
+  }
+}
