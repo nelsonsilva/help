@@ -6,7 +6,7 @@ import { LitElement, PropertyValues } from 'lit'
  export class FormElement extends LitElement {
 
   static formAssociated = true;
-   private _internals: ElementInternals;
+  private _internals: ElementInternals;
 
   constructor() {
     super();

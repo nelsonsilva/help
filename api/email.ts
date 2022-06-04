@@ -16,9 +16,9 @@ export default async function(req: VercelRequest, res: VercelResponse) {
 
     try {
         await mail.send(msg)
-        res.status(200).send(`<p>Thanks for your request ${requester}.</p><p>Nelson will come back to you asap.</p>`)
+        res.status(200).send({message: `Thanks for your request ${requester}.\nNelson will come back to you asap.`})
     } catch (error) {
         console.log('ERROR', error)
-        res.status(400).send('<p>Oops. Something went wrong :(</p>')
+        res.status(400).send({message: 'Oops. Something went wrong :('})
     }
 }

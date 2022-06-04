@@ -36,6 +36,17 @@ export class InputElement extends FormElement {
     this._updateInternals();
   }
   
+  // form associated callbacks
+  formResetCallback() {
+    this.value = this.getAttribute('value') || '';
+    this._updateInternals();
+  }
+
+  formStateRestoreCallback(state: string) {
+    this.value = state;
+    this._updateInternals();
+  }
+
   render() {
     return html`
       <input
