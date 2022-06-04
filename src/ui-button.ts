@@ -1,10 +1,10 @@
 import { LitElement, html, css } from 'lit';
-import { customElement } from 'lit/decorators.js'
+import { customElement, property } from 'lit/decorators.js'
 
 @customElement('ui-button')
 export class ButtonElement extends LitElement {
   static styles = css`
-    ::slotted(button) {
+    button {
       background: var(--ui-highlight-color, #d6e9ff);
       color: var(--ui-page-color, #1f5f8e);
       border: 1px solid var(--ui-page-color, #1f5f8e);
@@ -15,8 +15,33 @@ export class ButtonElement extends LitElement {
     }
   `;
 
+  static formAssociated = true;
+
+  private _internals: ElementInternals;
+
+  @property({ type: String })
+  type = ''
+
+  constructor() {
+    super();
+    this._internals = this.attachInternals();
+  }
+
+  private _onClick() {
+    switch (this.type) {
+      case 'submit':
+        this._internals.form?.requestSubmit();
+        break;
+      case 'reset':
+        this._internals.form?.reset();
+        break;
+    }
+  }
+
   render() {
-    return html`<div><slot></slot></div>`;
+    return html`
+      <button @click=${this._onClick}><slot></slot></button>
+    `;
   }
 }
 
