@@ -1,12 +1,13 @@
-const mail = require('@sendgrid/mail')
+import type { VercelRequest, VercelResponse } from '@vercel/node';
+import mail, { MailDataRequired } from "@sendgrid/mail";
 
 mail.setApiKey(process.env.SENDGRID_API_KEY)
 
-export default async function(req, res) {
+export default async function(req: VercelRequest, res: VercelResponse) {
     const { body: { requester, category, emergency, description } } = req;
 
     const subject = `${emergency ? 'URGENT: ' : ''}${requester} wants ${category}`
-    const msg = {
+    const msg: MailDataRequired = {
         to: process.env.EMAIL_TO,
         from: process.env.EMAIL_FROM,
         subject,
